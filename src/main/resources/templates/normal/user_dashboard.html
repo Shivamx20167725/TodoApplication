@@ -1,0 +1,137 @@
+<!DOCTYPE unspecified PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="normal/userBase::layout(~{::section})">
+<head>
+<title>Home Page</title>
+</head>
+<body>
+	<section> This is user DB page <span th:text="${user.name}"></span>
+	<span th:text="${user.email}"></span> <span th:text="${user.about}"></span>
+
+	<div class="card mr-3 ml-3">
+
+		<div class="card-body">
+
+			<h1 class="text-center">Add Task</h1>
+
+			<div class="container-fluid mt-1">
+
+				<div class="row">
+
+					<div class="col-md-8 offset-md-2">
+
+						<form action="#" th:object="${todos}" method="GET"
+							th:action="@{/user/index}" class="mt-2">
+
+
+							<!-- Task Name  -->
+
+							<div class="input-group">
+
+								<div class="input-group-prepend">
+
+									<div class="input-group-text ">
+
+										<i class="fa fa-plus"></i>
+
+									</div>
+
+								</div>
+
+								<input required type="text" id="taskName" name="taskName"
+									placeholder="Enter task here" class="form-control" />
+
+							</div>
+
+
+							<!-- Description  -->
+
+							<div class="input-group mt-3">
+
+								<div class="input-group-prepend">
+
+									<div class="input-group-text ">
+
+										<i class="fas fa-user-alt"></i>
+
+									</div>
+
+								</div>
+
+								<input required type="text" id="description" name="description"
+									placeholder="Enter Description here" class="form-control" />
+
+							</div>
+
+
+							<div class="container text-center">
+
+								<button class="btn btn-outline-primary">Add Task</button>
+
+							</div>
+
+
+
+
+						</form>
+
+
+					</div>
+
+
+				</div>
+
+			</div>
+
+
+		</div>
+
+	</div>
+
+	</section>
+	
+	<section>
+	
+	<h1>toda today will be displayed here</h1>
+
+	<div class="card mr-3 ml-3">
+
+		<div class="card-body">
+
+			<h1 class="text-center">Your Todos</h1>
+
+			<table class="table">
+				<caption>List of users</caption>
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Task</th>
+						<th scope="col">Desc</th>
+						<th scope="col">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="t : ${todos}">
+						<th scope="row">1</th>
+						<td th:text="${t.taskName}">Mark</td>
+						<td th:text="${t.description}">Otto</td>
+						<td>
+						
+							<a  th:href="@{'/user/delete/'+${t.id}}"  >Delete</a>
+						
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+
+		</div>
+	</div>
+
+
+	</section>
+
+	
+
+</body>
+</html>
